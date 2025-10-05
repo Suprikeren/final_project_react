@@ -30,7 +30,7 @@ export default function Nav() {
         {...({ to: "/" } as any)} // paksa TypeScript terima `to`
       >
         <span className="self-center whitespace-nowrap text-xl font-semibold text-gray-900">
-          Ini Logo
+          HireHub
         </span>
       </NavbarBrand>
 
