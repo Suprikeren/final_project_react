@@ -6,7 +6,7 @@ import {
   NavbarToggle,
 } from "flowbite-react";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 export default function Nav() {
@@ -25,7 +25,10 @@ export default function Nav() {
       className="py-5 transition-all duration-500 xl:px-28 lg:px-14 px-10 bg-white border-b border-gray-200"
     >
       {/* Logo */}
-      <NavbarBrand as={Link} to="/">
+      <NavbarBrand
+        as={Link}
+        {...({ to: "/" } as any)} // paksa TypeScript terima `to`
+      >
         <span className="self-center whitespace-nowrap text-xl font-semibold text-gray-900">
           Ini Logo
         </span>
@@ -38,10 +41,10 @@ export default function Nav() {
       <NavbarCollapse className="lg:justify-between w-full">
         {/* Nav Links */}
         <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-          <NavbarLink as={Link} to="/" active>
+          <NavbarLink as={Link} {...({ to: "/" } as any)} active>
             Home
           </NavbarLink>
-          <NavbarLink as={Link} to="/jobs">
+          <NavbarLink as={Link} {...({ to: "/jobs" } as any)}>
             JobsVacancy
           </NavbarLink>
         </div>

@@ -12,12 +12,9 @@ import type { Jobs as JobsType } from "../../types/JobType";
 import React, { useState } from "react";
 import Pagination from "../common/pagination";
 import axios from "axios";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 import { useNavigate } from "react-router-dom";
-
-
-
 
 type Props = {
   data: JobsType[];
@@ -33,10 +30,9 @@ export default function JobList({ data, setFetchStatus }: Props) {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // const currentJobs = data.slice(indexOfFirstItem, indexOfLastItem);
   const sortedData = [...data].sort(
-  (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-);
-const currentJobs = sortedData.slice(indexOfFirstItem, indexOfLastItem);
-
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+  const currentJobs = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const navigate = useNavigate();
@@ -44,7 +40,7 @@ const currentJobs = sortedData.slice(indexOfFirstItem, indexOfLastItem);
   const handleDelete = async (_id: string) => {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
 
-    const token = Cookies.get('token');
+    const token = Cookies.get("token");
 
     if (!token) {
       alert("Token tidak ditemukan. Silakan login ulang.");
@@ -52,13 +48,16 @@ const currentJobs = sortedData.slice(indexOfFirstItem, indexOfLastItem);
     }
 
     try {
-       await axios.delete(`https://final-project-api-alpha.vercel.app/api/jobs/${_id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Tambahkan token di header
-        },
-      });
-      alert("berhasil meghapus data")
+      await axios.delete(
+        `https://final-project-api-alpha.vercel.app/api/jobs/${_id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Tambahkan token di header
+          },
+        }
+      );
+      alert("berhasil meghapus data");
       setFetchStatus(true); // trigger data refetch
     } catch (error) {
       console.error("Failed to delete job:", error);
@@ -66,8 +65,6 @@ const currentJobs = sortedData.slice(indexOfFirstItem, indexOfLastItem);
     }
   };
 
-
-  
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
       <div className="max-w-full overflow-x-auto">
@@ -157,7 +154,7 @@ const currentJobs = sortedData.slice(indexOfFirstItem, indexOfLastItem);
                     </div>
                   </div>
                 </TableCell>
-                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                   {jobs.company_city}
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
@@ -171,18 +168,26 @@ const currentJobs = sortedData.slice(indexOfFirstItem, indexOfLastItem);
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                   <Badge
                     size="sm"
-                    color={jobs.job_status === 1 ? "success" : "error"}
+                    color={jobs.job_status ? "success" : "error"}
                   >
-                    {jobs.job_status === 1 ? "Active" : "Inactive"}
+                    {jobs.job_status ? "Active" : "Inactive"}
                   </Badge>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
                   <div className="flex items-center space-x-2">
-                    <button onClick={() => navigate(`/dashboard/create/jobs/${jobs._id}`)} className="flex items-center text-blue-600 hover:underline">
+                    <button
+                      onClick={() =>
+                        navigate(`/dashboard/create/jobs/${jobs._id}`)
+                      }
+                      className="flex items-center text-blue-600 hover:underline"
+                    >
                       <PencilSquareIcon className="w-5 h-5 mr-1" />
                       Edit
                     </button>
-                    <button onClick={() => handleDelete(jobs._id)} className="flex items-center text-red-600 hover:underline">
+                    <button
+                      onClick={() => handleDelete(jobs._id)}
+                      className="flex items-center text-red-600 hover:underline"
+                    >
                       <TrashIcon className="w-5 h-5 mr-1" />
                       Hapus
                     </button>

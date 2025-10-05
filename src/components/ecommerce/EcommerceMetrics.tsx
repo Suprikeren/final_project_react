@@ -2,7 +2,6 @@ import { ArrowDownIcon, ArrowUpIcon } from "../../icons";
 import Badge from "../ui/badge/Badge";
 import { useEffect, useState } from "react";
 import {
-  UserGroupIcon,
   CheckCircleIcon,
   XCircleIcon,
   BriefcaseIcon,

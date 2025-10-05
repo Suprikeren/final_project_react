@@ -9,6 +9,7 @@ interface ButtonProps {
   onClick?: () => void; // Click handler
   disabled?: boolean; // Disabled state
   className?: string; // Disabled state
+  type?: 'button' | 'submit' | 'reset'; // tambahkan ini
 }
 
 const Button: React.FC<ButtonProps> = ({

@@ -8,7 +8,7 @@ import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
 import Cookies from "js-cookie";
 
-import { Login as LoginType } from "../../types/Login";
+// import { Login as LoginType } from "../../types/Login";
 
 import axios from "axios";
 

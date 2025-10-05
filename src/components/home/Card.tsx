@@ -1,7 +1,7 @@
-// import { Card } from "flowbite-react";
-import Badge from "../ui/badge/Badge";
+
+
 import type { Jobs as JobsType } from "../../types/JobType";
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 
@@ -18,7 +18,7 @@ function formatToRupiah(amount: number): string {
   }).format(amount);
 }
 
-export default function Card({ data, setFetchStatus }: Props) {
+export default function Card({ data }: Props) {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 xl:max-w-6xl w-auto mx-auto xl:py-5 md:py-16 py-10 xl:px-0 px-10">
