@@ -10,7 +10,6 @@ import { filterJobsByQuery } from "../../utils/FilterJobs";
 
 import Pagination from "../../components/common/pagination";
 
-import { Select } from "flowbite-react";
 import PageMeta from "../../components/common/PageMeta";
 
 export default function Jobs() {
